@@ -1,4 +1,4 @@
-package com.lucabotini.chapanelaspringboot.model;
+package com.lucabotini.chapanelaspringboot.entity;
 
 import com.lucabotini.chapanelaspringboot.enums.ItemEnum;
 import jakarta.persistence.*;

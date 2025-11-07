@@ -2,7 +2,7 @@ package com.lucabotini.chapanelaspringboot.service;
 
 import com.lucabotini.chapanelaspringboot.dto.EscolhaDTO;
 import com.lucabotini.chapanelaspringboot.enums.ItemEnum;
-import com.lucabotini.chapanelaspringboot.model.ItemEscolhido;
+import com.lucabotini.chapanelaspringboot.entity.ItemEscolhido;
 import com.lucabotini.chapanelaspringboot.repository.EscolhaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

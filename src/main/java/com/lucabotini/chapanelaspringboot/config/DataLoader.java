@@ -1,7 +1,7 @@
 package com.lucabotini.chapanelaspringboot.config;
 
 import com.lucabotini.chapanelaspringboot.enums.ItemEnum;
-import com.lucabotini.chapanelaspringboot.model.ItemEscolhido;
+import com.lucabotini.chapanelaspringboot.entity.ItemEscolhido;
 import com.lucabotini.chapanelaspringboot.repository.EscolhaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
