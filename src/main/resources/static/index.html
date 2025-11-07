@@ -37,16 +37,12 @@
 
     <div class="card p-4 mb-4 text-white">
       <form id="formEscolha">
+
         <div class="mb-3">
           <label class="form-label">Seu nome:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nome"
-            placeholder="Michele"
-            required
-          />
+          <select class="form-select" id="convidados" required></select>
         </div>
+
 
         <div class="mb-3">
           <label class="form-label">Escolha um presente:</label>
@@ -73,11 +69,22 @@
           });
         });
 
+      fetch("/convidados")
+              .then((res) => res.json())
+              .then((data) => {
+                const select = document.getElementById("convidados");
+                select.innerHTML =
+                        "<option value='' disabled selected>Selecione seu nome:</option>";
+                data.forEach((convidados) => {
+                  select.innerHTML += `<option value="${convidados.nome}">${convidados.nome}</option>`;
+                });
+              });
+
       // Submeter escolha
       document.getElementById("formEscolha").addEventListener("submit", function(event) {
           event.preventDefault();
 
-          const nome = document.getElementById("nome").value;
+          const nome = document.getElementById("convidados").value;
           const item = document.getElementById("item").value;
 
           fetch(`/escolha?nome=${nome}&item=${item}`, { method: "POST" })
