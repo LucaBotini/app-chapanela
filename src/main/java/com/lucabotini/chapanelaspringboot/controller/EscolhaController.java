@@ -1,36 +1,43 @@
 package com.lucabotini.chapanelaspringboot.controller;
 
+import com.lucabotini.chapanelaspringboot.dto.EscolhaDTO;
 import com.lucabotini.chapanelaspringboot.enums.ItemEnum;
-import com.lucabotini.chapanelaspringboot.model.ItemEscolhido;
 import com.lucabotini.chapanelaspringboot.service.EscolhaService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("/escolha")
+@RequiredArgsConstructor
 public class EscolhaController {
 
     private final EscolhaService service;
 
+    // Retorna apenas os habilitados (para o <select>)
+    @GetMapping("/itens")
+    public List<String> listarItensDisponiveis() {
+        return service.listarItensDisponiveis()
+                .stream()
+                .map(Enum::name)
+                .toList();
+    }
+
+    // Registrar escolha
     @PostMapping
-    public ItemEscolhido escolher(
+    public ResponseEntity<String> registrar(
             @RequestParam String nome,
             @RequestParam ItemEnum item) {
 
-        return service.salvar(nome, item);
+        service.registrarEscolha(nome, item);
+        return ResponseEntity.ok("Registrado!");
     }
 
-    @GetMapping("/itens")
-    public ItemEnum[] listarItens() {
-        return ItemEnum.values();
-    }
-
-    @GetMapping()
-    public List<ItemEscolhido> listarTodos() {
-        return service.listarTodos();
+    @GetMapping
+    public List<EscolhaDTO> listarEscolhas() {
+        return service.listarEscolhas();
     }
 }
 

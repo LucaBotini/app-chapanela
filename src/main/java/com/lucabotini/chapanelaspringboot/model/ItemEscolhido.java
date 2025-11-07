@@ -2,8 +2,8 @@ package com.lucabotini.chapanelaspringboot.model;
 
 import com.lucabotini.chapanelaspringboot.enums.ItemEnum;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +13,7 @@ import lombok.Setter;
 
 @NoArgsConstructor
 
+@Data
 @Entity
 public class ItemEscolhido {
 
@@ -20,12 +21,13 @@ public class ItemEscolhido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @Size(min = 3, max = 50, message = "Tamanho de nome menor que 3.")
     private String nome;
 
     @Enumerated(EnumType.STRING)
     private ItemEnum item;
+
+    private boolean enabled = true;
 
     public ItemEscolhido(String nome, ItemEnum item) {
         this.nome = nome;

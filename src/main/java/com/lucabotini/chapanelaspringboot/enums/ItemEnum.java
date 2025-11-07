@@ -1,7 +1,7 @@
 package com.lucabotini.chapanelaspringboot.enums;
 
 public enum ItemEnum {
-    PANELA_PRESSAOtest,
+    PANELA_PRESSAO,
     FRIGIDEIRA,
     PANELA_MEDIA,
     PANELA_PEQUENA,
