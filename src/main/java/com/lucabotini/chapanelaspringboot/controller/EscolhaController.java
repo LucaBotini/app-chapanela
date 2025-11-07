@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/escolha")
@@ -18,10 +20,12 @@ public class EscolhaController {
 
     // Retorna apenas os habilitados (para o <select>)
     @GetMapping("/itens")
-    public List<String> listarItensDisponiveis() {
-        return service.listarItensDisponiveis()
-                .stream()
-                .map(Enum::name)
+    public List<Map<String, String>> listarItens() {
+        return Arrays.stream(ItemEnum.values())
+                .map(item -> Map.of(
+                        "value", item.name(),
+                        "label", item.getDescricao()
+                ))
                 .toList();
     }
 

@@ -65,7 +65,7 @@
           select.innerHTML =
             "<option value='' disabled selected>Selecione um item</option>";
           data.forEach((item) => {
-            select.innerHTML += `<option value="${item}">${item}</option>`;
+            select.innerHTML += `<option value="${item.label}">${item.label}</option>`;
           });
         });
 
