@@ -1,6 +1,7 @@
 package com.lucabotini.chapanelaspringboot.service;
 
 import com.lucabotini.chapanelaspringboot.entity.Convidado;
+import com.lucabotini.chapanelaspringboot.exception.EscolhaInvalidaException;
 import com.lucabotini.chapanelaspringboot.repository.ConvidadoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -16,6 +17,11 @@ public class ConvidadoService {
     private final ConvidadoRepository repository;
 
     public Convidado salvar(Convidado convidado){
+
+        if(convidado == null){
+            throw new EscolhaInvalidaException("O nome não pode ser vazio.");
+        }
+
         return repository.save(convidado);
     }
 
@@ -24,6 +30,11 @@ public class ConvidadoService {
     }
 
     public void salvarTodos(List<Convidado> convidados){
+
+        if(convidados == null){
+            throw new EscolhaInvalidaException("O nome não pode ser vazio.");
+        }
+
         repository.saveAll(convidados);
     }
 
